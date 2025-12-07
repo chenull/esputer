@@ -17,7 +17,10 @@
         self-lib = (import ./lib.nix) {inherit (inputs.nixpkgs) lib;};
       };
     } {
+      imports = [
+        ./hosts/flake-module.nix
+        ./modules/flake-parts/flake-module.nix
+      ];
       systems = ["x86_64-linux" "aarch64-darwin"];
-      imports = [];
     };
 }
