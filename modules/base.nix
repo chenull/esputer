@@ -34,8 +34,15 @@ let
 in {
   imports = [];
 
-  nixosModule = {...}: {
+  nixosModule = {user, ...}: {
     imports = [shared];
+
+    networking.networkmanager.enable = true;
+
+    users.users.${user} = {
+      isNormalUser = true;
+      extraGroups = ["networkmanager" "wheel"];
+    };
   };
 
   darwinModule = {...}: {
