@@ -17,7 +17,15 @@ let
 
     environment.systemPackages =
       (builtins.attrValues {
-        inherit (pkgs) killall wget;
+        inherit
+          (pkgs)
+          killall
+          nix-output-monitor
+          unzip
+          wget
+          vim
+          zip
+          ;
       })
       ++ [
         inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -30,13 +38,15 @@ in {
     imports = [shared];
   };
 
-  darwinModule = {user, ...}: {
+  darwinModule = {...}: {
     imports = [shared];
-    system.primaryUser = user;
-    # users.knownUsers = [user];
   };
 
-  homeModule = {pkgs, ...}: let
+  homeModule = {
+    pkgs,
+    lib,
+    ...
+  }: let
     inherit (pkgs.stdenv) hostPlatform;
   in {
     home.stateVersion = "25.11";
@@ -46,6 +56,7 @@ in {
         (pkgs)
         ripgrep
         ;
+      reptyr = lib.mkIf hostPlatform.isLinux pkgs.reptyr;
     };
 
     home.sessionVariables = {
