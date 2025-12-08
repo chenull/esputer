@@ -39,13 +39,13 @@ let
     environment.enableAllTerminfo = true;
   };
 in {
-  imports = [];
+  imports = [
+    "flakes"
+    "terminal"
+  ];
 
   nixosModule = {user, ...}: {
-    imports = [
-      shared
-      ./base/terminal.nix
-    ];
+    imports = [shared];
 
     networking.networkmanager.enable = true;
 
