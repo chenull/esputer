@@ -75,8 +75,9 @@ in {
     time.hardwareClockInLocalTime = true;
   };
 
-  darwinModule = {...}: {
+  darwinModule = {user, ...}: {
     imports = [shared];
+    system.primaryUser = user;
   };
 
   homeModule = {

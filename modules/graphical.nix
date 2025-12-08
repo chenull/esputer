@@ -1,6 +1,5 @@
-# Module: skeleton
-# Empty module as a placeholder for future modules.
-# see `modules/base.nix` for an example of a module.
+# Module: graphical
+# Graphical apps for
 let
   # Shared configuration.
   # Can be used to set configuration that is shared across
@@ -10,7 +9,7 @@ let
 in {
   # Import other modules if needed. e.g:
   # imports = [ "graphical" "terminal" ];
-  imports = [];
+  imports = ["graphical-minimal"];
 
   # Darwin configuration.
   darwinModule = {...}: {

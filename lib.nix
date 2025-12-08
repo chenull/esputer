@@ -141,6 +141,9 @@
           system = nixpkgs.hostPlatform;
           modules =
             [
+              {
+                nixpkgs.config.allowUnfree = true;
+              }
               # inputs.utils.darwinModules.autoGenFromInputs
               (pathTo ./hosts/${host}/darwin-configuration.nix)
             ]
