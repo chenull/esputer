@@ -49,6 +49,7 @@
     system,
     nixos ? hasSuffix "linux" system,
     modules,
+    # TODO: tags
     tags ? [],
   }: {
     self,
@@ -97,72 +98,76 @@
     # nix build .#nixosConfigurations.${hostname}.config.system.build.toplevel
     # OR
     # nixos-rebuild build --flake .#${hostname}
-    flake.nixosConfigurations = optionalAttrs nixos {
-      ${hostname} = inputs.nixpkgs.lib.nixosSystem {
-        modules =
-          [
-            {inherit nixpkgs;}
-            inputs.utils.nixosModules.autoGenFromInputs
-            (pathTo ./hosts/${host}/configuration.nix)
-          ]
-          ++ nixosModules
-          ++ [
-            inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
+    flake.nixosConfigurations = lib.mkMerge [
+      (lib.mkIf nixos {
+        ${hostname} = inputs.nixpkgs.lib.nixosSystem {
+          modules =
+            [
+              {
+                nixpkgs.config = nixpkgs.config;
+                nixpkgs.hostPlatform = nixpkgs.hostPlatform;
+              }
+              inputs.utils.nixosModules.autoGenFromInputs
+              (pathTo ./hosts/${host}/configuration.nix)
+            ]
+            ++ nixosModules
+            ++ [
+              inputs.home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
 
-              # `home-manager` uses `/etc/profiles/per-user/` instead of `~/.nix-profile`
-              # Required for `fonts.fontconfig.enable = true;`
-              home-manager.useUserPackages = true;
+                # `home-manager` uses `/etc/profiles/per-user/` instead of `~/.nix-profile`
+                # Required for `fonts.fontconfig.enable = true;`
+                home-manager.useUserPackages = true;
 
-              home-manager.users.${user}.imports = home;
-              home-manager.extraSpecialArgs = extraHomeManagerArgs;
-            }
-          ];
-        specialArgs = {
-          inherit inputs configRevision user host hostname;
+                home-manager.users.${user}.imports = home;
+                home-manager.extraSpecialArgs = extraHomeManagerArgs;
+              }
+            ];
+          specialArgs = {
+            inherit inputs configRevision user host hostname;
+          };
         };
-      };
-    };
+      })
+    ];
 
     # nix build .#darwinConfigurations.${hostname}.system
     # OR
     # darwin-rebuild build --flake .#${hostname}
-    flake.darwinConfigurations = optionalAttrs isDarwin {
-      ${hostname} = inputs.nix-darwin.lib.darwinSystem {
-        inherit inputs;
-        modules =
-          [
-            {inherit nixpkgs;}
-            inputs.utils.darwinModules.autoGenFromInputs
-            (pathTo ./hosts/${host}/darwin-configuration.nix)
-          ]
-          ++ darwinModules
-          ++ [
-            inputs.home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+    flake.darwinConfigurations = lib.mkMerge [
+      (lib.mkIf isDarwin {
+        ${hostname} = inputs.nix-darwin.lib.darwinSystem {
+          inherit inputs;
+          system = nixpkgs.hostPlatform;
+          modules =
+            [
+              # inputs.utils.darwinModules.autoGenFromInputs
+              (pathTo ./hosts/${host}/darwin-configuration.nix)
+            ]
+            ++ darwinModules
+            ++ [
+              inputs.home-manager.darwinModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
 
-              home-manager.users.${user} = {
-                imports = home;
-                home.homeDirectory = lib.mkForce "/Users/${user}";
-              };
-              home-manager.extraSpecialArgs = extraHomeManagerArgs;
-            }
-          ];
-        specialArgs = {inherit configRevision user host hostname;};
-      };
-    };
+                home-manager.users.${user} = {
+                  imports = home;
+                  home.homeDirectory = lib.mkForce "/Users/${user}";
+                };
+                home-manager.extraSpecialArgs = extraHomeManagerArgs;
+              }
+            ];
+          specialArgs = {inherit configRevision user host hostname;};
+        };
+      })
+    ];
 
     # nix build .#homeConfigurations."${user}@${hostname}".activationPackage
     # OR
     # home-manager build --flake .#"${user}@${hostname}"
     flake.homeConfigurations."${user}@${hostname}" = inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = import inputs.nixpkgs {
-        inherit (nixpkgs) config;
-        system = nixpkgs.hostPlatform;
-      };
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
       modules =
         [
           ({pkgs, ...}: {

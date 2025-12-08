@@ -15,13 +15,16 @@ let
 
     nix.channel.enable = false;
 
+    # Base system packages.
     environment.systemPackages =
       (builtins.attrValues {
         inherit
           (pkgs)
           killall
+          git # TODO: move to modules/git.nix
           nix-output-monitor
           unzip
+          usbutils
           wget
           vim
           zip
@@ -30,12 +33,19 @@ let
       ++ [
         inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
+
+    # Install all terminfo outputs
+    # alacritty, contour, foot, ghostty, kitty, mtm, rio, rxvt st, termite, tmux, wezterm, yaft
+    environment.enableAllTerminfo = true;
   };
 in {
   imports = [];
 
   nixosModule = {user, ...}: {
-    imports = [shared];
+    imports = [
+      shared
+      ./base/terminal.nix
+    ];
 
     networking.networkmanager.enable = true;
 
@@ -43,6 +53,26 @@ in {
       isNormalUser = true;
       extraGroups = ["networkmanager" "wheel"];
     };
+
+    # Default language of the system.
+    i18n.defaultLocale = "en_US.UTF-8";
+
+    # Additional locale settings other than the language.
+    i18n.extraLocaleSettings = rec {
+      LC_ADDRESS = "id_ID.UTF-8";
+      LC_IDENTIFICATION = LC_ADDRESS;
+      LC_MEASUREMENT = LC_ADDRESS;
+      LC_MONETARY = LC_ADDRESS;
+      LC_NAME = LC_ADDRESS;
+      LC_NUMERIC = LC_ADDRESS;
+      LC_PAPER = LC_ADDRESS;
+      LC_TELEPHONE = LC_ADDRESS;
+      LC_TIME = "id_ID.UTF-8";
+    };
+
+    # Whether to keep the hardware clock in local time instead of UTC.
+    # Mostly useful if dual-booting with a Windows-based operating system.
+    time.hardwareClockInLocalTime = true;
   };
 
   darwinModule = {...}: {

@@ -4,9 +4,17 @@ in {
   imports = map self-lib.mkConfiguration [
     {
       host = "empati";
-      hostSuffix = "-macos";
+      hostSuffix = "";
       user = "ayik";
       system = "aarch64-darwin";
+      modules =
+        builtins.attrNames {inherit (modules) personal;};
+    }
+    {
+      host = "solong";
+      hostSuffix = "";
+      user = "ayik";
+      system = "x86_64-linux";
       modules =
         builtins.attrNames {inherit (modules) personal;};
     }
