@@ -8,8 +8,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # TODO: move to modules/nix.nix
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  # wifi device: wlp0s20f3
+  programs.captive-browser.interface = "wlp0s20f3";
 
   # TODO: move to modules/openssh.nix
   # Enable the OpenSSH daemon.

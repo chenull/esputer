@@ -6,16 +6,13 @@ let
     ];
   };
 in {
-  # Import other modules if needed. e.g:
-  # imports = [ "graphical" "terminal" ];
-  imports = [];
-
-  # Darwin configuration.
+  # Darwin system fonts.
   darwinModule = {...}: {
     # Import shared configuration defined in `let ... in` block above.
     imports = [shared];
   };
-  # NixOS configuration.
+
+  # NixOS system fonts.
   nixosModule = {pkgs, ...}: {
     imports = [shared];
     fonts = {
@@ -60,7 +57,7 @@ in {
     };
   };
 
-  # Home configuration.
+  # User font configuration.
   homeModule = {...}: {
     gtk.font = {
       # Font to use in graphical programs for the user.

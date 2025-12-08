@@ -75,9 +75,19 @@ in {
     time.hardwareClockInLocalTime = true;
   };
 
-  darwinModule = {user, ...}: {
+  darwinModule = {
+    pkgs,
+    user,
+    ...
+  }: {
     imports = [shared];
     system.primaryUser = user;
+    environment.systemPackages = builtins.attrValues {
+      inherit
+        (pkgs)
+        mas
+        ;
+    };
   };
 
   homeModule = {
