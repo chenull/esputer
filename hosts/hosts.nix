@@ -8,7 +8,7 @@ in {
       user = "ayik";
       system = "aarch64-darwin";
       modules =
-        builtins.attrNames {inherit (modules) personal laptop;};
+        builtins.attrNames {inherit (modules) personal laptop graphical;};
     }
     {
       host = "solong";
@@ -16,7 +16,7 @@ in {
       user = "ayik";
       system = "x86_64-linux";
       modules =
-        builtins.attrNames {inherit (modules) personal laptop;};
+        builtins.attrNames {inherit (modules) personal laptop graphical;};
     }
   ];
 }

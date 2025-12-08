@@ -38,7 +38,21 @@
     environment.systemPackages =
       builtins.attrValues {inherit (pkgs) gparted pavucontrol;};
 
-    services.xserver.enable = true;
+    # X server
+    services.xserver = {
+      enable = true;
+      # lightdm display manager
+      displayManager.lightdm = {
+        enable = true;
+        greeters.mini.enable = true;
+      };
+      # IceWM window manager
+      windowManager = {
+        icewm = {
+          enable = true;
+        };
+      };
+    };
 
     services.pulseaudio.enable = false;
     services.pipewire.enable = true;
