@@ -3,10 +3,15 @@
   # imports = [ "wireless" ];
 
   nixosModule = {
-    user,
     lib,
+    pkgs,
+    user,
     ...
   }: {
+    environment.systemPackages =
+      builtins.attrValues {inherit (pkgs) acpi;};
+
+    # Automatically set the time zone based on the location.
     time.timeZone = lib.mkForce null;
     services.automatic-timezoned.enable = true;
     services.geoclue2.enableDemoAgent = lib.mkForce true;

@@ -6,7 +6,7 @@
 
     programs.alacritty.settings = {
       font.normal.family = "SauceCodePro Nerd Font Mono";
-      font.size = 12;
+      font.size = 10;
 
       colors = {
         draw_bold_text_with_bright_colors = true;
