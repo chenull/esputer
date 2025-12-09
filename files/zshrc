@@ -148,9 +148,6 @@ bindkey '^Er' carry-ranger
 bindkey '^Ec' carry-ranger-cd
 bindkey '^E^R' source-zshrc
 
-bindkey -r '^[OA'
-bindkey -r '^[OB'
-
 # Allow using `#`, `~` and `^` without escape
 unsetopt EXTENDED_GLOB
 
