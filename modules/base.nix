@@ -25,6 +25,7 @@ let
           ranger
           git # TODO: move to modules/git.nix
           nix-output-monitor
+          tmux
           unzip
           usbutils
           wget

@@ -42,52 +42,47 @@ in {
       # Niri configuration.
       xdg.configFile."niri/config.kdl".source = ../files/niri.kdl;
 
+      # Waybar bar.
+      programs.waybar = {
+        # Whether to enable the Waybar bar.
+        enable = true;
+
+        # Whether to enable Waybar systemd integration.
+        # This allows Waybar to automatically start with the desktop.
+        systemd.enable = false;
+      };
+
+      # Link Waybar's configuration files.
+      xdg.configFile."waybar/config".source = ../files/waybar/config.json;
+      xdg.configFile."waybar/style.css".source = ../files/waybar/style.css;
+
       # Theming
       home.pointerCursor = {
         # Whether to enable GTK configuration generation for `home.pointerCursor`.
         gtk.enable = true;
 
-        # Package providing the cursor theme.
         package = cursorPackage;
-
-        # The cursor name within the package.
         name = cursorName;
-
-        # The cursor size.
         size = cursorSize;
       };
 
       gtk = {
         cursorTheme = {
-          # Package providing the cursor theme.
           package = cursorPackage;
-
-          # The name of the cursor theme within the package.
           name = cursorName;
-
-          # The size of the cursor.
           size = cursorSize;
         };
-
         iconTheme = {
-          # Package providing the icon theme.
           package = iconPackage;
-
-          # The name of the icon theme within the package.
           name = iconName;
         };
       };
 
+      # Fuzzel launcher.
       programs.fuzzel = {
-        # Whether to enable the Fuzzel launcher.
         enable = true;
-
-        # Width of the border in pixels.
         settings.border.width = 2;
-
-        # Rounding of the corners in pixels.
         settings.border.radius = 0;
-
         settings.colors = rec {
           background = "0d0d0dcc";
           border = "0080ffcc";
@@ -99,21 +94,13 @@ in {
           selection-match = "00ffffff";
           text = "ffffffff";
         };
-
         settings.main = rec {
-          # Appearance
           font = "monospace:size=12.5";
           icon-theme = iconName;
-
-          # Padding in pixels.
           horizontal-pad = 6;
           inner-pad = horizontal-pad;
           vertical-pad = horizontal-pad;
-
-          # Line height in pixels.
           line-height = 20;
-
-          # Whether to use bold text for selected items. Works best with mono-spaced fonts.
           use-bold = "yes";
         };
       };
