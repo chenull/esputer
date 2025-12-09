@@ -36,7 +36,7 @@
 
   nixosModule = {pkgs, ...}: {
     environment.systemPackages =
-      builtins.attrValues {inherit (pkgs) gparted myxer;};
+      builtins.attrValues {inherit (pkgs) myxer;};
 
     # X server
     services.xserver = {

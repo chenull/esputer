@@ -15,8 +15,16 @@ in {
       hostSuffix = "";
       user = "ayik";
       system = "x86_64-linux";
-      modules =
-        builtins.attrNames {inherit (modules) personal laptop graphical;};
+      modules = builtins.attrNames {
+        inherit
+          (modules)
+          personal
+          laptop
+          graphical
+          ghostty
+          alacritty
+          ;
+      };
     }
   ];
 }

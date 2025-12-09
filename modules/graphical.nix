@@ -13,8 +13,10 @@ in {
     imports = [shared];
   };
   # NixOS configuration.
-  nixosModule = {...}: {
+  nixosModule = {pkgs, ...}: {
     imports = [shared];
+    environment.systemPackages =
+      builtins.attrValues {inherit (pkgs) gparted;};
   };
 
   # Home configuration.
