@@ -176,12 +176,13 @@ window-rule {
   opacity 0.65
 }
 
+// Turn on shadows for floating windows.
 window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
+    match is-floating=true
+
+    shadow {
+        on
+    }
 }
 
 // Open the Firefox picture-in-picture player as floating by default.
@@ -196,35 +197,16 @@ window-rule {
 }
 
 workspace "1"
-workspace "brow"
+workspace "web"
 workspace "term"
 workspace "4"
 workspace "5"
 workspace "6"
-workspace "7"
-workspace "obs"
-workspace "oss"
 
 window-rule {
-    match app-id=r#"obs"#
-    open-on-workspace "obs"
-}
-window-rule {
-    match app-id=r#"steam"#
-    open-on-workspace "oss"
-}
-window-rule {
-    match app-id=r#"^Spotify$"#
-    open-on-workspace "oss"
-}
-window-rule {
-    match app-id=r#"^discord$"#
-    open-on-workspace "oss"
-}
-window-rule {
-    match app-id=r#"chromium"#
+    match app-id=r#"(.*chrom.*|falkon|firefox)"#
     open-maximized true
-    open-on-workspace "brow"
+    open-on-workspace "web"
 }
 window-rule {
     match app-id=r#"ghostty"#

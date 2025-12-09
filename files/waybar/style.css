@@ -17,7 +17,8 @@
 window#waybar {
 	background: rgba(0, 0, 0, 0.8);
 	color: #ffffff;
-	border-bottom: 2px solid transparent
+	border-bottom: 2px solid transparent;
+	min-height: 32px
 }
 
 tooltip {
