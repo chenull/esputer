@@ -1,7 +1,14 @@
 # Module: zsh
 let
-  shared = {...}: {
+  shared = {
+    user,
+    pkgs,
+    ...
+  }: {
     programs.zsh.enable = true;
+    users.users.${user} = {
+      shell = pkgs.zsh;
+    };
   };
 in {
   # Darwin configuration.
