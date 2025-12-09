@@ -36,21 +36,16 @@
 
   nixosModule = {pkgs, ...}: {
     environment.systemPackages =
-      builtins.attrValues {inherit (pkgs) gparted pavucontrol;};
+      builtins.attrValues {inherit (pkgs) gparted myxer;};
 
     # X server
     services.xserver = {
       enable = true;
       # lightdm display manager
-      displayManager.lightdm = {
-        enable = true;
-        greeters.mini.enable = true;
-      };
+      displayManager.lightdm.enable = true;
       # IceWM window manager
       windowManager = {
-        icewm = {
-          enable = true;
-        };
+        icewm.enable = true;
       };
     };
 
