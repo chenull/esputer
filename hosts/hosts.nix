@@ -23,6 +23,7 @@ in {
           graphical
           ghostty
           alacritty
+          zsh
           ;
       };
     }
