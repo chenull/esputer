@@ -14,7 +14,7 @@
       else pkgs.ghostty;
 
     programs.ghostty.settings = {
-      theme = "starlight";
+      theme = "Starlight";
       bold-is-bright = true;
       quit-after-last-window-closed = true;
       auto-update = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "off";

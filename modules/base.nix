@@ -21,6 +21,7 @@ let
         inherit
           (pkgs)
           killall
+          peco
           ranger
           git # TODO: move to modules/git.nix
           nix-output-monitor
