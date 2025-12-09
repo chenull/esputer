@@ -1,20 +1,16 @@
 [{
 	// Whether the bar is displayed in front of (top) or behind (bottom) the windows.
 	"layer": "top",
+	"position": "top",
 
 	// Modules to display on the left.
 	"modules-left": [
-		"image#programs",   "custom/spacer",
-		"image#files",      "custom/spacer",
-		"image#screenshot", "custom/spacer",
-		"image#clipboard",  "custom/spacer",
-		"image#picker",     "custom/spacer",
-		"tray",             "custom/bigspacer",
-		"image#power"
+    "niri/workspaces",
+    "niri/window"
 	],
 
 	// Modules to display on the center.
-	"modules-center": [ "niri/workspaces" ],
+	"modules-center": [ "custom/startmenu" ],
 
 	// Modules to display on the right.
 	"modules-right": [
