@@ -1,7 +1,8 @@
 # Module: alacritty terminal emulator
 {
   homeModule = {pkgs, ...}: {
-    home.packages = [pkgs.alacritty.terminfo];
+    # TODO: move this ?
+    programs.alacritty.enable = true;
 
     programs.alacritty.settings = {
       font.normal.family = "SauceCodePro Nerd Font Mono";
