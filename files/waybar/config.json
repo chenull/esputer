@@ -121,13 +121,16 @@
 		"size": 16
 	},
 	"cpu": {
-    // The interval in which the information gets polled (default: 10 seconds)
     "interval": 2, 
-    // The format string for overall CPU usage
     "format": "{load}", 
-    // Optional: display average frequency
     "format-alt": "CPU: {usage}%", 
-    "tooltip": true
+    "tooltip": true,
+		"states": {
+			"idle": 0,
+			"normal": 10,
+			"warning": 30,
+			"critical": 75
+		}
 	},
 	"temperature": {
 		"critical-threshold": 75,
