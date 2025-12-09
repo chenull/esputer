@@ -14,7 +14,7 @@
 
 	// Modules to display on the right.
 	"modules-right": [
-		"image#cpu", "cpu",    "temperature", "custom/spacer",
+		"image#cpu", "cpu", "custom/spacer",   "temperature", "custom/spacer",
 		"image#ram", "memory", "custom/spacer",
 		"battery",
 		"backlight",
@@ -118,14 +118,16 @@
 		"on-click-right": "dunstify \"$(sensors)\"",
 		"on-click-middle": "dunstify \"$(free -mht)\"",
 		"path": "/etc/nixos/icons/cpu.svg",
-		"size": 22
+		"size": 16
 	},
 	"cpu": {
-		"format": "{usage}% ",
-		"interval": 1,
-		"on-click": "$TERMINAL -e btop",
-		"on-click-right": "dunstify \"$(sensors)\"",
-		"on-click-middle": "dunstify \"$(free -mht)\""
+    // The interval in which the information gets polled (default: 10 seconds)
+    "interval": 2, 
+    // The format string for overall CPU usage
+    "format": "{load}", 
+    // Optional: display average frequency
+    "format-alt": "CPU: {usage}%", 
+    "tooltip": true
 	},
 	"temperature": {
 		"critical-threshold": 75,

@@ -6,6 +6,22 @@
 	border-radius: 0px
 }
 
+#cpu.idle {
+  color: grey;
+}
+
+#cpu.normal {
+  color: green;
+}
+
+#cpu.warning {
+  color: yellow;
+}
+
+#cpu.critical {
+  color: red;
+}
+
 #image {
 	background-color: rgba(0, 0, 0, 0);
 	margin: 2px 2px;
