@@ -86,32 +86,5 @@ in {
           name = iconName;
         };
       };
-
-      # Fuzzel launcher.
-      programs.fuzzel = {
-        enable = true;
-        settings.border.width = 2;
-        settings.border.radius = 0;
-        settings.colors = rec {
-          background = "0d0d0dcc";
-          border = "0080ffcc";
-          input = "e6ffffff";
-          match = "ff0080ff";
-          prompt = "00ffffcc";
-          selection = "2073ff88";
-          selection-text = text;
-          selection-match = "00ffffff";
-          text = "ffffffff";
-        };
-        settings.main = rec {
-          font = "monospace:size=12.5";
-          icon-theme = iconName;
-          horizontal-pad = 6;
-          inner-pad = horizontal-pad;
-          vertical-pad = horizontal-pad;
-          line-height = 20;
-          use-bold = "yes";
-        };
-      };
     };
 }

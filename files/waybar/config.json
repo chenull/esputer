@@ -18,7 +18,7 @@
 		"image#ram", "memory", "custom/spacer",
 		"battery",
 		"backlight",
-		"custom/brightness",
+		"custom/brightness", "custom/spacer",
 		"wireplumber", "custom/spacer",
 		"clock",       "custom/bigspacer",
 		"image#close"
@@ -185,7 +185,7 @@
 	// • [SCRL DN] Decrease the screen brightness.
 	"backlight": {
 		"exec-if": "ls /sys/class/backlight/intel_backlight > /dev/null 2>&1",
-		// "format": "{icon}{percent}%  ",
+		"format": "{icon} ",
 		"format-icons": [ "󰃜 ", "󰃞 ", "󰃟 ", "󰃠 ", "󰃚 " ]
 	},
 
