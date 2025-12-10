@@ -39,12 +39,12 @@
       inherit
         (pkgs)
         bemoji
-        falkon
         gparted
         myxer
-        thunar
         ungoogled-chromium
         ;
+      kde-falkon = pkgs.kdePackages.falkon;
+      thunar = pkgs.xfce.thunar;
     };
 
     # X server
