@@ -1,21 +1,16 @@
-[90m                    x%%%vv                      [39m
-[90m                 x%%vv%%%vv                     [39m
-[90m              l%%vv%%vvvv%%%x                   [39m
-[90m              %%x%vvvvvvvv%%%%                  [39m
-[90m               %%%vvvvvvvvvv%%%                 [39m
-[90m                v%%vvvvvvvvvv%%vv               [39m
-[90m                vv%vvvvvvvvvvvv%v%              [39m
-[90m              <%%%vvvvvvvvvvvvvv%v%             [39m
-[90m             v%%%vvvv%%vvvvvvvvvv%%%x           [39m
-[90m           n%%%vvvvv%v%%%vvvvvvvvvv%v%          [39m
-[90m          v%%%vvvv%%vv %%%vvvvvvvvvv%%vI        [39m
-[90m         %v%vvvvv%%v    x%%%vvvvvvvvvv%v%       [39m
-[90m       v%%%vvvv%%%v       v%%vvvvvvvvvv%%%      [39m
-[90m      %%%vvvvv%%%          vv%%vvvvvvvvv%%%x    [39m
-[90m    c%%%vvvv%%vv             %v%vvvvvvvvvv%%%   [39m
-[90m   %v%vvvvv%%%       [31moJCo[90m     vv%%vvvvvvvvv%%%=[90m [39m
-[90m v%%%vvvv%vvx     [31mozzz7zzzzo[90m    %v%vvvvvvvvv%%vx[39m
-[90m%%%%vvvv%%%      [31mzzjjjzzjjjzz[90m    v%%%vvvvvv%%%%%[39m
-[90m%%v%%%%%v%       [31mzLzzzzzzzzLz[90m     I%%%vv%%%v%%x [39m
-[90m  x%%v%%         [31mzzjzzzzzzjzz[90m       %%%%%v%l    [39m
-[90m     ))           [31mozzzzzzzz7[90m         <%%x       [39m
+[90m               v%%%v[39m
+[90m            vvvv%%%%%v[39m
+[90m           v%%%%vvvv%%v[39m
+[90m           iv%vvvvvvv%%%[39m
+[90m            r%%vvvvvvv%%v%[39m
+[90m           )%%vvvvvvvvvv%%v[39m
+[90m          v%%vvv%%%vvvvvv%v%x[39m
+[90m        v%%%vv%%vvv%vvvvvvv%v%[39m
+[90m       vv%vvv%v%  v%%%vvvvvv%%v[39m
+[90m     l%v%vv%%%%    <%%%vvvvvv%%vv[39m
+[90m    vv%vvv%v%        %%%%vvvvvv%v%[39m
+[90m  xv%%vv%%%i          <%%%vvvvvv%v%i[39m
+[90m v%%vvv%%%    [31mozzJCzjo[90m  %%%%vvvvvv%%v[39m
+[90m%%x%v%v%%    [31mzzjjjjjj7u[90m  <%%%vvv%%vv%[39m
+[90mv%vv%%%      [31mzjjzzzzj7j[90m    v%%%vv%v  [39m
+[90m   %%x       [31mo7zzzzzzz[90m      r%v%     [39m
