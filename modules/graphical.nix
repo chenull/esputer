@@ -57,8 +57,8 @@ in {
       xdg.configFile."waybar/style.css".source = ../files/waybar/style.css;
 
       # Icons
-      xdg.configFile."waybar/icons/cpu.svg".source = ../files/icons/cpu.svg;
-      xdg.configFile."waybar/icons/close.svg".source = ../files/icons/close.svg;
+      xdg.configFile."waybar/icons/cpu.svg".source = ../files/waybar/icons/cpu.svg;
+      xdg.configFile."waybar/icons/close.svg".source = ../files/waybar/icons/close.svg;
 
       # Theming
       home.pointerCursor = {
