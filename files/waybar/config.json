@@ -18,7 +18,7 @@
 		"image#ram", "memory", "custom/spacer",
 		"battery",
 		"backlight",
-		"custom/brightness", "custom/spacer",
+		"custom/brightness",
 		"wireplumber", "custom/spacer",
 		"clock",       "custom/bigspacer",
 		"image#close"
