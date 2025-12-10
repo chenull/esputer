@@ -7,8 +7,8 @@
     programs.alacritty.settings = {
       font.normal.family = "SauceCodePro Nerd Font Mono";
       font.size = 12;
-      startup_mode = "Maximized";
       window = {
+        startup_mode = "Maximized";
         decorations = "None";
         padding = {
           x = 4;
