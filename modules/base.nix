@@ -1,9 +1,11 @@
 let
   shared = {
+    lib,
     configRevision,
     inputs,
     hostname,
     pkgs,
+    user,
     ...
   }: {
     # Add flake revision to `nixos-version --json`
@@ -16,31 +18,65 @@ let
     nix.channel.enable = false;
 
     # Base system packages.
-    environment.systemPackages =
-      (builtins.attrValues {
-        inherit
-          (pkgs)
-          btop
-          killall
-          peco
-          ranger
-          git # TODO: move to modules/git.nix
-          nix-output-monitor
-          tmux
-          unzip
-          usbutils
-          wget
-          vim
-          zip
-          ;
-      })
+    environment.systemPackages = with pkgs;
+      [
+        # File / Disk Utilities
+        duf # df / disk utilization
+        dust # du / disk usage
+        ncdu # disk usage analyzer
+        eza # ls
+        ranger
+
+        # Process
+        btop
+        killall
+        pik # kill process(es) interactively
+        inetutils # network tools: telnet, ifconfig, whois, etc.
+        lsof
+        procps # get process info using procfs
+        git # TODO: move to modules/git.nix
+
+        # Shell Utilities
+        bat # cat
+        peco
+        nix-output-monitor
+        ripgrep
+        tmux
+        tree
+        unzip
+        usbutils
+        wget
+        vim
+        zip
+
+        # Platform-specific packages (Linux only)
+      ]
+      ++ lib.optionals stdenv.hostPlatform.isLinux [
+        reptyr # attach a process to a new terminal
+        procfd # lsof / list open file descriptors
+      ]
       ++ [
-        inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.home-manager.packages.${stdenv.hostPlatform.system}.default
       ];
+
+    environment.shellAliases = {
+      du = "dust";
+      df = "duf";
+      free = "free -h";
+      top = "btop";
+      ls = "eza --icons";
+      ll = "eza -l --icons";
+      la = "eza -la --icons";
+    };
 
     # Install all terminfo outputs
     # alacritty, contour, foot, ghostty, kitty, mtm, rio, rxvt st, termite, tmux, wezterm, yaft
     environment.enableAllTerminfo = true;
+
+    users.users.${user} = {
+      # WORKAROUND: Fixes alacritty's terminfo not being found on macOS over SSH
+      shell = pkgs.zsh;
+    };
   };
 in {
   imports = [
@@ -95,29 +131,15 @@ in {
   };
 
   homeModule = {
-    pkgs,
-    lib,
-    ...
-  }: let
-    inherit (pkgs.stdenv) hostPlatform;
-  in {
     home.stateVersion = "25.11";
-
-    home.packages = builtins.attrValues {
-      inherit
-        (pkgs)
-        ripgrep
-        ;
-      reptyr = lib.mkIf hostPlatform.isLinux pkgs.reptyr;
-    };
 
     home.sessionVariables = {
       EDITOR = "vim";
       VISUAL = "vim";
       MANROFFOPT = "-P -c";
     };
-
     programs.home-manager.enable = true;
+
     # Disable manual generation to avoid builtins.toFile warning
     # See: https://github.com/nix-community/home-manager/issues/7935
     manual.manpages.enable = false;

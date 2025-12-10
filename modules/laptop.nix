@@ -8,8 +8,14 @@
     user,
     ...
   }: {
-    environment.systemPackages =
-      builtins.attrValues {inherit (pkgs) acpi;};
+    environment.systemPackages = builtins.attrValues {
+      inherit
+        (pkgs)
+        acpi # battery status
+        light # backlight control
+        zzz # sleep / hibernate laptop
+        ;
+    };
 
     # Automatically set the time zone based on the location.
     time.timeZone = lib.mkForce null;

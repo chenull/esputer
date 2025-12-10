@@ -1,3 +1,5 @@
+alias gst='git status'
+
 function ga {
   if [[ -z $1 ]]; then
     git add -p

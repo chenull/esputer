@@ -1,17 +1,30 @@
-{
-  imports = ["graphical"];
+let
+  shared = {pkgs, ...}: {
+    environment.systemPackages = builtins.attrValues {
+      inherit
+        (pkgs)
+        treemd # cli markdown navigator
+        ;
+    };
+  };
+in {
+  imports = [
+    "graphical"
+    "zsh"
+    "ghostty"
+    "alacritty"
+  ];
 
-  darwinModule = {
-    pkgs,
-    lib,
-    ...
-  }: {
+  darwinModule = {pkgs, ...}: {
+    imports = [shared];
     environment.systemPackages = builtins.attrValues {
       inherit
         (pkgs)
         apparency
         ;
     };
+
+    # TODO: Migrate to home-manager mas module
 
     # My apps from the App Store
     # Flighty
@@ -31,5 +44,8 @@
     #   command = "${lib.getExe pkgs.mas} install 1077124956";
     #   serviceConfig.RunAtLoad = true;
     # };
+  };
+  nixosModule = {...}: {
+    imports = [shared];
   };
 }

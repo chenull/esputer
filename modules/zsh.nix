@@ -1,14 +1,7 @@
 # Module: zsh
 let
-  shared = {
-    user,
-    pkgs,
-    ...
-  }: {
+  shared = {...}: {
     programs.zsh.enable = true;
-    users.users.${user} = {
-      shell = pkgs.zsh;
-    };
   };
 in {
   # Darwin configuration.
@@ -32,6 +25,12 @@ in {
       # `home-manager` installs `nix-zsh-completions`
       # which conflicts with `nix` in `home.packages`
       enableCompletion = false;
+
+      # TODO:
+      # eval "$(/opt/homebrew/bin/brew shellenv)"
+      # eval "$(direnv hook zsh)"
+      # eval "$(zoxide init zsh)"
+      # eval "$(starship init zsh)"
 
       prezto = {
         enable = true;
@@ -57,9 +56,7 @@ in {
         extended = true;
         save = 1000000;
         size = 1000000;
-
         ignoreSpace = true;
-
         ignoreDups = true;
         expireDuplicatesFirst = true;
       };

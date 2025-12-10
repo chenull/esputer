@@ -7,8 +7,14 @@ in {
       hostSuffix = "";
       user = "ayik";
       system = "aarch64-darwin";
-      modules =
-        builtins.attrNames {inherit (modules) personal laptop graphical;};
+      modules = builtins.attrNames {
+        inherit
+          (modules)
+          personal
+          laptop
+          graphical
+          ;
+      };
     }
     {
       host = "solong";
@@ -21,9 +27,6 @@ in {
           personal
           laptop
           graphical
-          ghostty
-          alacritty
-          zsh
           ;
       };
     }
