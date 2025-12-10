@@ -86,5 +86,33 @@ in {
           name = iconName;
         };
       };
+      # Fuzzel launcher.
+      programs.fuzzel = {
+        enable = true;
+        settings.main = rec {
+          font = "monospace:pixelsize=20";
+          icon-theme = "Flat-Remix-Blue-Dark";
+          horizontal-pad = 6;
+          inner-pad = horizontal-pad;
+          vertical-pad = horizontal-pad;
+          use-bold = "yes";
+          lines = 10;
+        };
+        settings.border = {
+          width = 2;
+          radius = 0;
+        };
+        settings.colors = rec {
+          background = "0d0d0dcc";
+          border = "0080ffcc";
+          input = "e6ffffff";
+          match = "ff0080ff";
+          prompt = "00ffffcc";
+          selection = "2073ff88";
+          selection-text = text;
+          selection-match = "00ffffff";
+          text = "ffffffff";
+        };
+      };
     };
 }
