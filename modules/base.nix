@@ -23,37 +23,45 @@ let
         # File / Disk Utilities
         duf # df / disk utilization
         dust # du / disk usage
-        ncdu # disk usage analyzer
         eza # ls
+        ncdu # disk usage analyzer
         ranger
 
         # Process
         btop
-        killall
-        pik # kill process(es) interactively
-        inetutils # network tools: telnet, ifconfig, whois, etc.
-        lsof
-        procps # get process info using procfs
         git # TODO: move to modules/git.nix
+        inetutils # network tools: telnet, ifconfig, whois, etc.
+        killall
+        lsof
+        pik # kill process(es) interactively
+        procps # get process info using procfs
 
         # Shell Utilities
         bat # cat
-        peco
         nix-output-monitor
-        ripgrep
+        peco
         tmux
+
+        # System Utilities
+        zigfetch
+        fd # find
+        ripgrep
         tree
         unzip
-        usbutils
-        wget
         vim
+        wget
         zip
 
-        # Platform-specific packages (Linux only)
+        # Hardware Utilities
+        pciutils
+        smartmontools
+        usbutils
       ]
+      # Platform-specific packages (Linux only)
       ++ lib.optionals stdenv.hostPlatform.isLinux [
-        reptyr # attach a process to a new terminal
+        hwinfo
         procfd # lsof / list open file descriptors
+        reptyr # attach a process to a new terminal
       ]
       ++ [
         inputs.home-manager.packages.${stdenv.hostPlatform.system}.default

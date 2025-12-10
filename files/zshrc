@@ -7,6 +7,8 @@ unalias gcl 2>/dev/null || true
 
 alias gst='git status'
 alias gcl='git clone'
+alias ff='fastfetch'
+alias ag='rg'
 
 function ga {
   if [[ -z $1 ]]; then
