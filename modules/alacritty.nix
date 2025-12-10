@@ -7,11 +7,13 @@
     programs.alacritty.settings = {
       font.normal.family = "SauceCodePro Nerd Font Mono";
       font.size = 12;
-      decorations = "None";
       startup_mode = "Maximized";
-      window.padding = {
-        x = 4;
-        y = 4;
+      window = {
+        decorations = "None";
+        padding = {
+          x = 4;
+          y = 4;
+        };
       };
       colors = {
         draw_bold_text_with_bright_colors = true;
