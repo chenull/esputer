@@ -15,8 +15,13 @@ in {
   # NixOS configuration.
   nixosModule = {pkgs, ...}: {
     imports = [shared];
-    environment.systemPackages =
-      builtins.attrValues {inherit (pkgs) gparted;};
+    environment.systemPackages = builtins.attrValues {
+      inherit
+        (pkgs)
+        ungoogled-chromium
+        gnome-calendar
+        ;
+    };
 
     # Niri
     programs.niri.enable = true;

@@ -35,8 +35,17 @@
   };
 
   nixosModule = {pkgs, ...}: {
-    environment.systemPackages =
-      builtins.attrValues {inherit (pkgs) myxer;};
+    environment.systemPackages = builtins.attrValues {
+      inherit
+        (pkgs)
+        bemoji
+        falkon
+        gparted
+        myxer
+        thunar
+        ungoogled-chromium
+        ;
+    };
 
     # X server
     services.xserver = {

@@ -184,8 +184,8 @@
 	// • [SCRL UP] Increase the screen brightness.
 	// • [SCRL DN] Decrease the screen brightness.
 	"backlight": {
-		"exec-if": "ls /sys/class/backlight/* > /dev/null 2>&1",
-		"format": "{icon}{percent}%  ",
+		"exec-if": "ls /sys/class/backlight/intel_backlight > /dev/null 2>&1",
+		// "format": "{icon}{percent}%  ",
 		"format-icons": [ "󰃜 ", "󰃞 ", "󰃟 ", "󰃠 ", "󰃚 " ]
 	},
 
@@ -213,7 +213,7 @@
 		"format": "{icon} {volume}%",
 		"format-icons": [ " ", " ", " " ],
 		"format-muted": " ",
-		"on-click": "pwvucontrol",
+		"on-click": "myxer",
 		"on-click-right": "qpwgraph",
 		"on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 	},
@@ -221,7 +221,7 @@
 	// Date and time module.
 	// • [LMB] Opens a calendar.
 	"clock": {
-		"format": "{:%a %e %m %H.%M}",
+		"format": "{:%a %e %b %H.%M}",
 		"interval": 1,
 		"on-click": "$TERMINAL -e calcurse",
 		"tooltip-format": "<tt>{calendar}</tt>"
