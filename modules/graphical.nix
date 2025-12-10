@@ -20,6 +20,7 @@ in {
         (pkgs)
         ungoogled-chromium
         gnome-calendar
+        karlender
         ;
     };
 
