@@ -1,7 +1,12 @@
 # Module: zsh
 let
   shared = {...}: {
-    programs.zsh.enable = true;
+    programs.zsh = {
+      enable = true;
+      shellInit = ''
+        eval "zigfetch"
+      '';
+    };
   };
 in {
   # Darwin configuration.

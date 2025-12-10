@@ -14,6 +14,8 @@ function git_current_branch() {
 }
 
 alias ag='rg'
+alias gst='git add --all'
+compdef _git gst=git-add
 alias gst='git status'
 compdef _git gst=git-status
 alias gcam='git commit -a -m'
