@@ -1,4 +1,6 @@
 let
+  homeManagerStateVersion = "25.11";
+
   shared = {
     lib,
     configRevision,
@@ -12,6 +14,8 @@ let
     system.configurationRevision = configRevision.full;
 
     networking.hostName = hostname;
+    # Enable the OpenSSH daemon.
+    services.openssh.enable = true;
 
     time.timeZone = "Asia/Jakarta";
 
@@ -81,9 +85,17 @@ let
     # alacritty, contour, foot, ghostty, kitty, mtm, rio, rxvt st, termite, tmux, wezterm, yaft
     environment.enableAllTerminfo = true;
 
+    environment.etc."nixos/icons/jc-ascii.txt".source = ../files/jc-ascii.txt;
+
     users.users.${user} = {
       # WORKAROUND: Fixes alacritty's terminfo not being found on macOS over SSH
       shell = pkgs.zsh;
+    };
+
+    # root's home configuration
+    home-manager.users.root = {
+      home.stateVersion = homeManagerStateVersion;
+      home.file.".config/zigfetch/config.json".source = ../files/zigfetch.json;
     };
   };
 in {
@@ -136,10 +148,17 @@ in {
         mas
         ;
     };
+    users.users.root = {
+      uid = 0;
+      # Necessary otherwise `home-manager` will error out
+      home = "/var/root";
+      # WORKAROUND: Fixes alacritty's terminfo not being found over SSH
+      shell = pkgs.zsh;
+    };
   };
 
   homeModule = {
-    home.stateVersion = "25.11";
+    home.stateVersion = homeManagerStateVersion;
 
     home.sessionVariables = {
       EDITOR = "vim";
@@ -147,6 +166,8 @@ in {
       MANROFFOPT = "-P -c";
     };
     programs.home-manager.enable = true;
+
+    xdg.configFile."zigfetch/config.json".source = ../files/zigfetch.json;
 
     # Disable manual generation to avoid builtins.toFile warning
     # See: https://github.com/nix-community/home-manager/issues/7935

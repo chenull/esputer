@@ -5,10 +5,11 @@ unalias gfc 2>/dev/null || true
 unalias gr 2>/dev/null || true
 unalias gcl 2>/dev/null || true
 
+alias ag='rg'
 alias gst='git status'
 alias gcl='git clone'
 alias ff='fastfetch'
-alias ag='rg'
+alias zf='zigfetch'
 
 function ga {
   if [[ -z $1 ]]; then

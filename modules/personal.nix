@@ -3,6 +3,7 @@ let
     environment.systemPackages = builtins.attrValues {
       inherit
         (pkgs)
+        fastfetch
         treemd # cli markdown navigator
         ;
     };
