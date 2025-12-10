@@ -1,6 +1,6 @@
 # Module: alacritty terminal emulator
 {
-  homeModule = {pkgs, ...}: {
+  homeModule = {...}: {
     # TODO: move this ?
     programs.alacritty.enable = true;
 

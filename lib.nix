@@ -50,7 +50,7 @@
     nixos ? hasSuffix "linux" system,
     modules,
     # TODO: tags
-    tags ? [],
+    # tags ? [],
   }: {
     self,
     inputs,

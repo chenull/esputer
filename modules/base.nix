@@ -72,6 +72,11 @@ let
       ];
 
     environment.shellAliases = {
+      "_" = "sudo";
+      "..." = "cd ../../..";
+      "...." = "cd ../../../..";
+      "....." = "cd ../../../../..";
+      "......" = "cd ../../../../../..";
       du = "dust";
       df = "duf";
       free = "free -h";
@@ -85,8 +90,10 @@ let
     # alacritty, contour, foot, ghostty, kitty, mtm, rio, rxvt st, termite, tmux, wezterm, yaft
     environment.enableAllTerminfo = true;
 
+    # Icons
     environment.etc."nixos/icons/jc-ascii.txt".source = ../files/jc-ascii.txt;
 
+    # Hacks
     users.users.${user} = {
       # WORKAROUND: Fixes alacritty's terminfo not being found on macOS over SSH
       shell = pkgs.zsh;

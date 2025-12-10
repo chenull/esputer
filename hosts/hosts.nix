@@ -27,6 +27,7 @@ in {
           personal
           laptop
           graphical
+          niri
           ;
       };
     }

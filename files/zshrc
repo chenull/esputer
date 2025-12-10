@@ -6,15 +6,21 @@ unalias gr 2>/dev/null || true
 unalias gcl 2>/dev/null || true
 unalias gcm 2>/dev/null || true
 
-# Gets the current git branch name
+# Aliases
+alias ag='rg'
+alias ff='fastfetch'
+alias zf='zigfetch'
+
+
+# Git functions and  aliases
+
 function git_current_branch() {
   local ref
   ref=$(command git symbolic-ref --short HEAD 2>/dev/null) || return
   echo "$ref"
 }
 
-alias ag='rg'
-alias gst='git add --all'
+alias gaa='git add --all'
 compdef _git gst=git-add
 alias gst='git status'
 compdef _git gst=git-status
@@ -28,9 +34,6 @@ alias ggpull='git pull origin "$(git_current_branch)"'
 compdef _git ggpull=git-pull
 alias ggpush='git push origin "$(git_current_branch)"'
 compdef _git ggpush=git-push
-
-alias ff='fastfetch'
-alias zf='zigfetch'
 
 function ga {
   if [[ -z $1 ]]; then

@@ -48,5 +48,8 @@ in {
   };
   nixosModule = {...}: {
     imports = [shared];
+
+    # No password required for sudo
+    security.sudo.wheelNeedsPassword = false;
   };
 }
