@@ -56,6 +56,10 @@ in {
       xdg.configFile."waybar/config".source = ../files/waybar/config.json;
       xdg.configFile."waybar/style.css".source = ../files/waybar/style.css;
 
+      # Icons
+      xdg.configFile."waybar/icons/cpu.svg".source = ../files/icons/cpu.svg;
+      xdg.configFile."waybar/icons/close.svg".source = ../files/icons/close.svg;
+
       # Theming
       home.pointerCursor = {
         # Whether to enable GTK configuration generation for `home.pointerCursor`.

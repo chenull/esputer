@@ -7,15 +7,15 @@
 }
 
 #cpu.idle {
-  color: grey;
+  color: white;
 }
 
 #cpu.normal {
-  color: green;
+  color: yellow;
 }
 
 #cpu.warning {
-  color: yellow;
+  color: orange;
 }
 
 #cpu.critical {

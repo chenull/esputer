@@ -20,6 +20,7 @@ let
       (builtins.attrValues {
         inherit
           (pkgs)
+          btop
           killall
           peco
           ranger

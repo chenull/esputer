@@ -117,7 +117,7 @@
 		"on-click": "$TERMINAL -e btop",
 		"on-click-right": "dunstify \"$(sensors)\"",
 		"on-click-middle": "dunstify \"$(free -mht)\"",
-		"path": "/etc/nixos/icons/cpu.svg",
+		"path": "$HOME/.config/waybar/icons/cpu.svg",
 		"size": 16
 	},
 	"cpu": {
@@ -221,8 +221,7 @@
 	// Date and time module.
 	// • [LMB] Opens a calendar.
 	"clock": {
-		//"format": "{:%d/%m/%Y %H:%M:%S}",
-		"format": "{:%d/%m %Hh%M}",
+		"format": "{:%a %e %m %H.%M}",
 		"interval": 1,
 		"on-click": "$TERMINAL -e calcurse",
 		"tooltip-format": "<tt>{calendar}</tt>"
@@ -233,7 +232,7 @@
 	// • [RMB (hold)] Select a window to kill/force quit.
 	"image#close": {
 		"on-click": "niri msg action close-window",
-		"path": "/etc/nixos/icons/close.svg",
-		"size": 22
+		"path": "$HOME/.config/waybar/icons/close.svg",
+		"size": 20
 	}
 }]
