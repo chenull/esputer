@@ -6,6 +6,12 @@ unalias gr 2>/dev/null || true
 unalias gcl 2>/dev/null || true
 unalias gcm 2>/dev/null || true
 
+# Gets the current git branch name
+function git_current_branch() {
+  local ref
+  ref=$(command git symbolic-ref --short HEAD 2>/dev/null) || return
+  echo "$ref"
+}
 
 alias ag='rg'
 alias gst='git status'
