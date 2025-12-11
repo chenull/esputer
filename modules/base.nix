@@ -94,6 +94,9 @@ let
       la = "eza -la --icons";
 
       # Git aliases
+      gd = "git diff";
+      gdca = "git diff --cached";
+      gds = "git diff --staged";
       gaa = "git add --all";
       gst = "git status";
       gcam = "git commit -a -m";

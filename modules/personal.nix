@@ -39,39 +39,34 @@ in {
         utm # system emulator and virtual machine host
         ;
     };
-    homebrew.brews = [
-      "colima"
-    ];
-    homebrew.casks = [
-      "affinity-photo"
-      "bettertouchtool"
-      "cursor"
-      "discord"
-      "google-chrome"
-      "hammerspoon"
-      # TODO: "karabiner-elements"
-      "monodraw"
-      "powerphotos"
-      "setapp"
-      "spotify"
-      "surfshark"
-      "whatsapp"
-      "zoom"
-    ];
-    homebrew.masApps = [
-      {
-        id = "flighty";
-        appId = 1358823008;
-      }
-      {
-        id = "telephone";
-        appId = 406825478;
-      }
-      {
-        id = "polarr-photo-editor";
-        appId = 1077124956;
-      }
-    ];
+    homebrew = {
+      enable = true;
+      brews = [
+        "colima"
+      ];
+      casks = [
+        "affinity-photo"
+        "bettertouchtool"
+        "cursor"
+        "discord"
+        "google-chrome"
+        "hammerspoon"
+        # TODO: "karabiner-elements"
+        "monodraw"
+        "powerphotos"
+        "setapp"
+        "spotify"
+        "surfshark"
+        "telegram"
+        "whatsapp"
+        "zoom"
+      ];
+      masApps = {
+        "flighty" = 1358823008;
+        "telephone" = 406825478;
+        "polarr-photo-editor" = 1077124956; # acccount is chenull@yahoo.com
+      };
+    };
   };
 
   nixosModule = {pkgs, ...}: {
@@ -106,25 +101,6 @@ in {
       // optionalAttrs hostPlatform.isDarwin {
         inherit (pkgs) joplin-desktop;
       });
-
-    # My apps from the App Store
-    # Flighty
-    # launchd.user.agents.install-flighty = {
-    #   command = "${lib.getExe pkgs.mas} install 1358823008";
-    #   serviceConfig.RunAtLoad = true;
-    # };
-
-    # Telephone
-    # launchd.user.agents.install-telephone = {
-    #   command = "${lib.getExe pkgs.mas} install 406825478";
-    #   serviceConfig.RunAtLoad = true;
-    # };
-
-    # Polarr Photo Editor, email acccount is chenull@yahoo.com
-    # launchd.user.agents.install-polarr-photo-editor = {
-    #   command = "${lib.getExe pkgs.mas} install 1077124956";
-    #   serviceConfig.RunAtLoad = true;
-    # };
 
     programs.firefox.profiles.personal.isDefault = true;
 
