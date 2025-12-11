@@ -9,7 +9,6 @@ let
         docker-compose
         element-desktop # client for matrix.org
         fastfetch
-        pritunl-client # VPN client
         runme # Execute commands inside your docs
         slack # JogjaCamp chats
         tgpt # terminal GPT
@@ -58,6 +57,7 @@ in {
         "spotify"
         "surfshark"
         "telegram"
+        "tunnelblick"
         "whatsapp"
         "zoom"
       ];
