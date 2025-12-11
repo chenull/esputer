@@ -7,7 +7,6 @@ let
     inputs,
     hostname,
     pkgs,
-    user,
     ...
   }: {
     # Add flake revision to `nixos-version --json`
@@ -28,13 +27,13 @@ let
         duf # df / disk utilization
         dust # du / disk usage
         eza # ls
+        fd # find files
         ncdu # disk usage analyzer
         ranger
 
         # Process
         btop
         git # TODO: move to modules/git.nix
-        inetutils # network tools: telnet, ifconfig, whois, etc.
         killall
         lsof
         pik # kill process(es) interactively
@@ -42,19 +41,26 @@ let
 
         # Shell Utilities
         bat # cat
-        nix-output-monitor
+        fzf
         peco
-        tmux
+        tmux # TODO: Move to modules/tmux.nix using programs.tmux
 
         # System Utilities
-        zigfetch
-        fd # find
+        nix-output-monitor
         ripgrep
         tree
         unzip
         vim
         wget
+        zigfetch
         zip
+
+        # Network Utilities
+        inetutils # network tools: telnet, ifconfig, whois, etc.
+        ipcalc
+        ipinfo
+        mtr
+        sipcalc
 
         # Hardware Utilities
         pciutils
@@ -84,19 +90,15 @@ let
       ls = "eza --icons";
       ll = "eza -l --icons";
       la = "eza -la --icons";
-    };
 
-    # Install all terminfo outputs
-    # alacritty, contour, foot, ghostty, kitty, mtm, rio, rxvt st, termite, tmux, wezterm, yaft
-    environment.enableAllTerminfo = true;
-
-    # Icons
-    environment.etc."nixos/icons/jc-ascii.txt".source = ../files/jc-ascii.txt;
-
-    # Hacks
-    users.users.${user} = {
-      # WORKAROUND: Fixes alacritty's terminfo not being found on macOS over SSH
-      shell = pkgs.zsh;
+      # Git aliases
+      gaa = "git add --all";
+      gst = "git status";
+      gcam = "git commit -a -m";
+      gcmsg = "git commit -m";
+      gcl = "git clone";
+      ggpull = ''git pull origin "$(git symbolic-ref --short HEAD 2>/dev/null)'';
+      ggpush = ''git push origin "$(git symbolic-ref --short HEAD 2>/dev/null)'';
     };
 
     # root's home configuration
@@ -115,6 +117,7 @@ in {
     imports = [shared];
 
     networking.networkmanager.enable = true;
+    programs.mtr.enable = true;
 
     users.users.${user} = {
       isNormalUser = true;

@@ -40,6 +40,7 @@
         (pkgs)
         bemoji
         gparted
+        mtr-gui
         myxer
         ungoogled-chromium
         ;
