@@ -34,6 +34,7 @@ let
         # Process
         btop
         git # TODO: move to modules/git.nix
+        htop
         killall
         lsof
         pik # kill process(es) interactively
@@ -42,6 +43,7 @@ let
         # Shell Utilities
         bat # cat
         fzf
+        just # run project-specific commands
         peco
         tmux # TODO: Move to modules/tmux.nix using programs.tmux
 
