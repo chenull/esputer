@@ -1,8 +1,17 @@
 # Module: alacritty terminal emulator
+# Known Issue:
+# - terminfo: /nix/store/61k--set-environment:8: can't find terminal definition for alacritty
 {
-  homeModule = {...}: {
-    # TODO: move this ?
-    programs.alacritty.enable = true;
+  nixosModule = {pkgs, ...}: {
+    environment.systemPackages = [pkgs.alacritty.terminfo];
+  };
+
+  darwinModule = {pkgs, ...}: {
+    environment.systemPackages = [pkgs.alacritty.terminfo];
+  };
+
+  homeModule = {pkgs, ...}: {
+    home.packages = [pkgs.alacritty.terminfo];
 
     programs.alacritty.settings = {
       font.normal.family = "SauceCodePro Nerd Font Mono";

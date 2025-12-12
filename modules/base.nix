@@ -7,6 +7,7 @@ let
     inputs,
     hostname,
     pkgs,
+    user,
     ...
   }: {
     # Add flake revision to `nixos-version --json`
@@ -102,8 +103,20 @@ let
       gcam = "git commit -a -m";
       gcmsg = "git commit -m";
       gcl = "git clone";
-      ggpull = ''git pull origin "$(git symbolic-ref --short HEAD 2>/dev/null)'';
-      ggpush = ''git push origin "$(git symbolic-ref --short HEAD 2>/dev/null)'';
+      ggpull = ''git pull origin "$(git symbolic-ref --short HEAD 2>/dev/null)"'';
+      ggpush = ''git push origin "$(git symbolic-ref --short HEAD 2>/dev/null)"'';
+    };
+
+    # Install all terminfo outputs
+    # alacritty, contour, foot, ghostty, kitty, mtm, rio, rxvt st, termite, tmux, wezterm, yaft
+    environment.enableAllTerminfo = true;
+
+    # custom files
+    environment.etc."nixos/icons/jc-ascii.txt".source = ../files/jc-ascii.txt;
+
+    users.users.${user} = {
+      # WORKAROUND: Fixes alacritty's terminfo not being found on macOS over SSH
+      shell = pkgs.zsh;
     };
 
     # root's home configuration
@@ -180,6 +193,7 @@ in {
       VISUAL = "vim";
       MANROFFOPT = "-P -c";
     };
+    programs.alacritty.enable = true;
     programs.home-manager.enable = true;
 
     xdg.configFile."zigfetch/config.json".source = ../files/zigfetch.json;

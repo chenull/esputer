@@ -5,9 +5,6 @@
     lib,
     ...
   }: {
-    # TODO: move this ?
-    programs.ghostty.enable = true;
-
     programs.ghostty.package =
       if pkgs.stdenv.hostPlatform.isDarwin
       then pkgs.ghostty-bin

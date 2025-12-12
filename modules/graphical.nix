@@ -31,7 +31,7 @@ in {
     pkgs,
     ...
   }: let
-    inherit (lib) mkIf;
+    inherit (lib) mkIf mkMerge;
     inherit (pkgs.stdenv) hostPlatform;
 
     cursorPackage = pkgs.bibata-cursors;
@@ -40,27 +40,33 @@ in {
     iconPackage = pkgs.flat-remix-icon-theme;
     iconName = "Flat-Remix-Blue-Dark";
   in
-    mkIf (hostPlatform.isLinux) {
-      # Theming
-      home.pointerCursor = {
-        # Whether to enable GTK configuration generation for `home.pointerCursor`.
-        gtk.enable = true;
-
-        package = cursorPackage;
-        name = cursorName;
-        size = cursorSize;
-      };
-
-      gtk = {
-        cursorTheme = {
+    mkMerge [
+      # linux and darwin configuration
+      {
+        programs.ghostty.enable = true;
+      }
+      # linux-only
+      (mkIf (hostPlatform.isLinux) {
+        # Theming
+        home.pointerCursor = {
+          # Whether to enable GTK configuration generation for `home.pointerCursor`.
+          gtk.enable = true;
           package = cursorPackage;
           name = cursorName;
           size = cursorSize;
         };
-        iconTheme = {
-          package = iconPackage;
-          name = iconName;
+
+        gtk = {
+          cursorTheme = {
+            package = cursorPackage;
+            name = cursorName;
+            size = cursorSize;
+          };
+          iconTheme = {
+            package = iconPackage;
+            name = iconName;
+          };
         };
-      };
-    };
+      })
+    ];
 }

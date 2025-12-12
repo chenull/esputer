@@ -12,6 +12,7 @@ in {
           (modules)
           personal
           laptop
+          macos
           graphical
           ;
       };
