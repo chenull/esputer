@@ -14,6 +14,7 @@ let
     system.configurationRevision = configRevision.full;
 
     networking.hostName = hostname;
+
     # Enable the OpenSSH daemon.
     services.openssh.enable = true;
 
@@ -131,7 +132,11 @@ in {
     "terminal"
   ];
 
-  nixosModule = {user, ...}: {
+  nixosModule = {
+    config,
+    user,
+    ...
+  }: {
     imports = [shared];
 
     networking.networkmanager.enable = true;
@@ -157,6 +162,17 @@ in {
       LC_TELEPHONE = LC_ADDRESS;
       LC_TIME = "id_ID.UTF-8";
     };
+
+    services.xserver.xkb.layout = "us";
+    services.xserver.xkb.variant = "intl";
+
+    # Export the used keyboard layout. Some programs rely on this setting for it to be properly applied.
+    environment.variables.XKB_DEFAULT_LAYOUT = config.services.xserver.xkb.layout;
+    environment.variables.XKB_DEFAULT_VARIANT = config.services.xserver.xkb.variant;
+
+    # Whether to let the virtual console's (TTY's) keyboard layout be the same as the one configured above.
+    # If false, it needs to be manually configured with the `console.keyMap` option.
+    console.useXkbConfig = true;
 
     # Whether to keep the hardware clock in local time instead of UTC.
     # Mostly useful if dual-booting with a Windows-based operating system.
