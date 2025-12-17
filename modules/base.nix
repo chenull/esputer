@@ -103,7 +103,6 @@ let
       gst = "git status";
       gcam = "git commit -a -m";
       gcmsg = "git commit -m";
-      gcl = "git clone";
       ggpull = ''git pull origin "$(git symbolic-ref --short HEAD 2>/dev/null)"'';
       ggpush = ''git push origin "$(git symbolic-ref --short HEAD 2>/dev/null)"'';
     };

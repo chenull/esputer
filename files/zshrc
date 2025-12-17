@@ -3,7 +3,6 @@ unalias gcF 2>/dev/null || true
 unalias gcFS 2>/dev/null || true
 unalias gfc 2>/dev/null || true
 unalias gr 2>/dev/null || true
-unalias gcl 2>/dev/null || true
 unalias gcm 2>/dev/null || true
 
 # Aliases
